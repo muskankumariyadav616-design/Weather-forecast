@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherScope — 7-Day Forecast</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <span class="logo">◈ WEATHERSCOPE</span>
+      <span class="tagline">Atmospheric Intelligence</span>
+    </div>
+    <div class="header-right">
+      <div class="location-pill">
+        <span class="pin">⊕</span>
+        <input type="text" id="locInput" class="location-input" value="Udaipur, Tripura" placeholder="Enter city..." />
+        <button id="searchBtn" class="search-btn">GO</button>
+      </div>
+      <div class="unit-toggle">
+        <button class="unit-btn active" id="celsiusBtn">°C</button>
+        <button class="unit-btn" id="fahrenheitBtn">°F</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO CURRENT WEATHER -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="current-label">NOW</div>
+      <div class="current-temp" id="currentTemp">—</div>
+      <div class="current-desc" id="currentDesc">Loading...</div>
+      <div class="current-date" id="currentDate"></div>
+      <div class="current-stats">
+        <div class="stat-pill">
+          <span class="stat-icon">💧</span>
+          <span class="stat-label">HUMIDITY</span>
+          <span class="stat-value" id="curHumidity">—</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">🌬</span>
+          <span class="stat-label">WIND</span>
+          <span class="stat-value" id="curWind">—</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">👁</span>
+          <span class="stat-label">VISIBILITY</span>
+          <span class="stat-value" id="curVis">—</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">☀</span>
+          <span class="stat-label">UV INDEX</span>
+          <span class="stat-value" id="curUV">—</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <canvas id="weatherCanvas" width="340" height="340"></canvas>
+    </div>
+  </section>
+
+  <!-- HOURLY SCROLL -->
+  <section class="section-block">
+    <div class="section-head">
+      <span class="section-title">HOURLY BREAKDOWN</span>
+      <span class="section-sub">Today's hour-by-hour</span>
+    </div>
+    <div class="hourly-track" id="hourlyTrack"></div>
+  </section>
+
+  <!-- 7 DAY FORECAST GRID -->
+  <section class="section-block">
+    <div class="section-head">
+      <span class="section-title">7-DAY FORECAST</span>
+      <span class="section-sub">Click a day for details</span>
+    </div>
+    <div class="week-grid" id="weekGrid"></div>
+  </section>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-inner">
+      <button class="detail-close" id="detailClose">✕</button>
+      <div class="detail-day-name" id="detailDayName"></div>
+      <div class="detail-date" id="detailDate"></div>
+      <div class="detail-temp-row">
+        <div class="detail-hi"><span>HIGH</span><strong id="detailHigh">—</strong></div>
+        <div class="detail-lo"><span>LOW</span><strong id="detailLow">—</strong></div>
+      </div>
+      <div class="detail-metrics" id="detailMetrics"></div>
+      <div class="detail-chart-label">Humidity & Temp Throughout Day</div>
+      <canvas id="detailChart" width="560" height="180"></canvas>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- CHARTS SECTION -->
+  <section class="section-block charts-section">
+    <div class="section-head">
+      <span class="section-title">WEEKLY TRENDS</span>
+      <span class="section-sub">Temperature · Humidity · Rain chance</span>
+    </div>
+    <div class="chart-tabs">
+      <button class="chart-tab active" data-chart="temp">🌡 Temperature</button>
+      <button class="chart-tab" data-chart="humidity">💧 Humidity</button>
+      <button class="chart-tab" data-chart="rain">🌧 Precipitation %</button>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="weekChart" width="900" height="260"></canvas>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>◈ WEATHERSCOPE — Real-time atmospheric data</span>
+    <span id="lastUpdated"></span>
+  </footer>
+
+  <script src="weather-data.js"></script>
+  <script src="charts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
