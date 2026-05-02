@@ -1,7 +1,6 @@
-// =============================================
 //  weather-data.js — Real API via Open-Meteo
 //  Free, no API key required
-// =============================================
+
 
 const WeatherData = (() => {
 
